@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+	<meta charset="UTF-8">
+	<title><%= list_name %></title>
+</head>
+<body>
+	<table cellpadding="4">
+	<% tweets.forEach( function(tweet) { %>
+	<tr>
+			<td valign="top"><img src="<%= tweet.user.profile_image_url %>" width="48" height="48" /></td>
+			<td>
+				<b><font color="#555"><%= tweet.user.screen_name %></font></b><br />
+				<%= tweet.text %><br />
+				<small><font color="#aaa"><%= tweet.created_at %></font></small>
+			</td>
+		</tr>
+		<tr><td colspan="2"><hr /></td></tr>
+	<% }); %>
+	</table>
+</body>
+</html>

@@ -1,7 +1,11 @@
+/* ========================================================================
+ *  tw2db.js
+ *  Streaming API で Twitter の TL を MongoDB へ保存する
+ * ======================================================================== */
 var twitter    = require('twitter')
   , mongoose   = require('mongoose')
   , Schema     = mongoose.Schema
-  , Setting    = require('./conf.js');
+  , Setting    = require('./setting.js');
 ;
 
 // typeof で得た文字列を型に変換

@@ -1,0 +1,12 @@
+{
+	"name"    : "tw2email",
+	"version" : "0.0.1",
+	"dependencies" : {
+		"cron"     : "1.0.0",
+		"ejs"      : "0.8.2",
+		"mail"     : "0.2.3",
+		"time"     : "0.8.3",
+		"mongoose" : "3.1.1",
+		"twitter"  : "0.1.18"
+	}
+}

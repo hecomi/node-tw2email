@@ -2,15 +2,18 @@
  *  getList.js
  *  リストに格納されたメンバ一覧を配列で返す getListMembers() を定義
  * ======================================================================== */
-var util       = require('util')
+var Setting    = require('./setting.js')
+  , util       = require('util')
   , twitter    = require('twitter')
   , mongoose   = require('mongoose')
   , Schema     = mongoose.Schema
-  , Setting    = require('./conf.js')
 ;
 
 // リストに含まれているメンバーの ID
 var members = [];
+
+// リトライのカウンタ
+var retryCnt = 0;
 
 // Twitter へ接続
 var tw = new twitter({
@@ -32,7 +35,7 @@ function getListMembersRecursive(cursor, callback) {
 		if (!data.hasOwnProperty('users')) {
 			console.error('[getListMembers.js] Error!');
 			console.error(data);
-			if (--Setting.twitter.retry.cnt <= 0) {
+			if (--retryCnt <= 0) {
 				throw 'Reached max retry num...';
 				return;
 			}
@@ -59,6 +62,7 @@ function getListMembersRecursive(cursor, callback) {
 
 // export する関数
 module.exports = function(callback) {
+	retryCnt = Setting.twitter.retry.cnt;
 	getListMembersRecursive(-1, callback);
 }
 
